@@ -1,18 +1,15 @@
-from datetime import timedelta
+# This is an example feature definition file
 
-import pandas as pd
+from datetime import timedelta
 
 from feast import (
     Entity,
-    FeatureService,
     FeatureView,
     Field,
-    PushSource,
     RedshiftSource,
-    RequestSource,
 )
-from feast.on_demand_feature_view import on_demand_feature_view
-from feast.types import Float32, Float64, Int64
+
+from feast.types import Float32
 
 
 # Defines a data source from which feature values can be retrieved. Sources are queried when building training
@@ -26,10 +23,12 @@ trips_source = RedshiftSource(
     # The (optional) created timestamp is used to ensure there are no duplicate
     # feature rows in the offline store or when building training datasets
     created_timestamp_column="pickup_datetime",
+    # Database to redshift source.
+    database="dev",
 )
 trips = Entity(
     name="yellow_cab",
-    description="trips",
+    description="trips_2",
 )
 
 trip_costs = FeatureView(
@@ -43,5 +42,4 @@ trip_costs = FeatureView(
         Field(name="tolls_amount", dtype=Float32),
     ],
     source=trips_source,
-    tags={"team": "anna"},
 )
