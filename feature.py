@@ -45,9 +45,3 @@ trip_costs = FeatureView(
     source=trips_source,
     tags={"team": "driver_performance_test"},
 )
-
-# Defines a way to push data (to be available offline, online or both) into Feast.
-trip_costs_push_source = PushSource(
-    name="trip_costs_push_source",
-    batch_source=trip_costs_source,
-)
