@@ -43,5 +43,5 @@ trip_costs = FeatureView(
         Field(name="tolls_amount", dtype=Float32),
     ],
     source=trips_source,
-    tags={"team": "driver_performance_test"},
+    tags={"team": "anna"},
 )
